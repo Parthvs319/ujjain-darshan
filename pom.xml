@@ -11,12 +11,6 @@
   <packaging>pom</packaging>
   <name>Ujjain Darshan Parent</name>
 
-  <modules>
-    <module>helpers</module>
-    <module>models</module>
-    <module>user</module>
-    <module>src</module>
-  </modules>
 
   <properties>
     <java.version>17</java.version>
@@ -25,6 +19,14 @@
     <ebean.version>13.11.1</ebean.version>
     <rxjava.version>1.3.8</rxjava.version>
   </properties>
+
+  <modules>
+    <module>src</module>
+    <module>helpers</module>
+    <module>models</module>
+    <module>user</module>
+
+  </modules>
 
   <!-- Shared dependency versions -->
   <dependencyManagement>
@@ -142,6 +144,17 @@
             <release>${java.version}</release>
           </configuration>
         </plugin>
+
+
+          <!-- Maven Exec Plugin to run the application -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+              <mainClass>Application</mainClass>
+            </configuration>
+          </plugin>
 
         <!-- Shade plugin (only used in runnable module) -->
         <plugin>
