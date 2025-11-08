@@ -15,6 +15,7 @@
     <module>helpers</module>
     <module>models</module>
     <module>user</module>
+    <module>src</module>
   </modules>
 
   <properties>

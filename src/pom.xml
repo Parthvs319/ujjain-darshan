@@ -14,9 +14,9 @@
     </parent>
 
     <!-- Module identification -->
-    <artifactId>models</artifactId>
+    <artifactId>src</artifactId>
     <packaging>jar</packaging>
-    <name>Ujjain Darshan - Models Module</name>
+    <name>Ujjain Darshan - Src Module</name>
 
     <!-- Dependencies -->
     <dependencies>
