@@ -38,6 +38,12 @@
             <artifactId>ebean</artifactId>
             <version>${ebean.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.ujjain</groupId>
+            <artifactId>helpers</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>

@@ -10,7 +10,7 @@
         <groupId>com.ujjain</groupId>
         <artifactId>darshan</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath> <!-- important so Maven finds parent -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <!-- Module identification -->
@@ -28,8 +28,28 @@
         </dependency>
 
         <dependency>
+            <groupId>com.ujjain</groupId>
+            <artifactId>helpers</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ujjain</groupId>
+            <artifactId>user</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
             <version>${vertx.version}</version>
         </dependency>
 

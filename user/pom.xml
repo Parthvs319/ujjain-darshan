@@ -28,6 +28,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.ujjain</groupId>
+            <artifactId>helpers</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>
             <version>${vertx.version}</version>

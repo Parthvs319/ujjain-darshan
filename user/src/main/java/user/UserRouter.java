@@ -1,8 +1,8 @@
 package user;
 
+import helpers.interfaces.SubRouterProtocol;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
-import src.helpers.interfaces.SubRouterProtocol;
 
 public enum UserRouter implements SubRouterProtocol {
 
