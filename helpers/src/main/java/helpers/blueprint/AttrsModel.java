@@ -4,7 +4,6 @@ package helpers.blueprint;
 import io.ebean.annotation.DbJsonB;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 import javax.persistence.MappedSuperclass;
 import java.util.HashMap;
 
