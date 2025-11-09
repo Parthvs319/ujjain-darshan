@@ -1,7 +1,7 @@
 package models.sql;
 
 
-import helpers.blueprint.BaseModel;
+import helpers.blueprint.models.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,22 +1,21 @@
-package user;
+package auth;
 
 import helpers.interfaces.SubRouterProtocol;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.ext.web.Router;
 
-public enum UserRouter implements SubRouterProtocol {
+public enum AuthRouter implements SubRouterProtocol {
 
     INSTANCE;
 
     @Override
     public Router router(Vertx vertx) {
         Router router = Router.router(vertx);
-//        router.post("/create").handler(CreateUserController.INSTANCE::handle);
+        router.post("/getToken").handler(GenerateBearerTokenController.INSTANCE::handle);
 
 //        router.get("/").handler(GetAllCitiesController.INSTANCE::handle);
 //        router.delete("/:id").handler(.INSTANCE::handle);
 //        router.post("/removeField").handler(.INSTANCE::handle);
         return router;
     }
-
 }

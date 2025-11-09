@@ -13,6 +13,13 @@
         <relativePath>../pom.xml</relativePath> <!-- important so Maven finds parent -->
     </parent>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
     <!-- Module identification -->
     <artifactId>models</artifactId>
     <packaging>jar</packaging>
@@ -37,6 +44,11 @@
             <groupId>io.ebean</groupId>
             <artifactId>ebean</artifactId>
             <version>${ebean.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>4.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.ujjain</groupId>

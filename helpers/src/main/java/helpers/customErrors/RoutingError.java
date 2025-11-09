@@ -1,19 +1,19 @@
 package helpers.customErrors;
 
-import helpers.blueprint.RoutingEvent;
+import helpers.blueprint.enums.RequestEvent;
+import helpers.blueprint.enums.RoutingEvent;
 
 public class RoutingError extends RuntimeException {
 
     private int statusCode=409;
-    private RoutingEvent event;
+    private RequestEvent event;
 
     public RoutingError(String message, int statusCode) {
         super(message);
         this.statusCode = statusCode;
     }
 
-
-    public RoutingError(String message,RoutingEvent event, int statusCode) {
+    public RoutingError(String message, RequestEvent event, int statusCode) {
         super(message);
         this.statusCode = statusCode;
         this.event = event;
@@ -26,18 +26,18 @@ public class RoutingError extends RuntimeException {
     public RoutingError(int statusCode, String message) {
         super(message);
         if(statusCode==401){
-            event = RoutingEvent.AUTHENTICATIONFAILED;
+            event = RequestEvent.AUTHENTICATIONFAILED;
         }
         this.statusCode = statusCode;
     }
 
-    public RoutingError(int statusCode, RoutingEvent event,String message) {
+    public RoutingError(int statusCode, RequestEvent event,String message) {
         super(message);
         this.statusCode = statusCode;
         this.event = event;
     }
 
-    public RoutingEvent getEvent() {
+    public RequestEvent getEvent() {
         return event;
     }
 

@@ -1,4 +1,4 @@
-import helpers.blueprint.*;
+import helpers.sql.SqlConfigFactory;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 

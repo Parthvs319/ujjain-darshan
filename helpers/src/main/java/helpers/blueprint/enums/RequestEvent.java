@@ -1,6 +1,5 @@
-package helpers.blueprint;
-
-public enum RoutingEvent {
+package helpers.blueprint.enums;
+public enum RequestEvent {
 
     REQUESTFAILED("REQUESTFAILED"),
     AUTHENTICATIONFAILED("AUTHENTICATIONFAILED"),
@@ -13,7 +12,7 @@ public enum RoutingEvent {
 
     String dbValue;
 
-    RoutingEvent(String dbValue) {
+    RequestEvent(String dbValue) {
         this.dbValue = dbValue;
     }
 

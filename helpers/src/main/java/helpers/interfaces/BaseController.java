@@ -10,7 +10,6 @@ import java.io.Writer;
 @FunctionalInterface
 public interface BaseController {
 
-    void handle(RoutingContext event);
 
     default void fail(String e) throws RoutingError {
         throw new RoutingError(e);
@@ -44,4 +43,5 @@ public interface BaseController {
         System.out.println(e);
     }
 
+    void handle(io.vertx.rxjava.ext.web.RoutingContext event);
 }

@@ -8,59 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="models" />
+        <module name="helpers" />
         <module name="src" />
         <module name="user" />
-      </profile>
-      <profile name="Annotation profile for Ujjain Darshan Parent" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean/13.11.1/ebean-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-api/13.11.1/ebean-api-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/avaje/avaje-applog/1.0/avaje-applog-1.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/avaje/avaje-applog-slf4j/1.0/avaje-applog-slf4j-1.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/avaje/avaje-config/2.4/avaje-config-2.4.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/avaje/avaje-lang/1.1/avaje-lang-1.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/persistence-api/3.0/persistence-api-3.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-annotation/8.3/ebean-annotation-8.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-types/3.0/ebean-types-3.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-datasource-api/8.4/ebean-datasource-api-8.4.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-core/13.11.1/ebean-core-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-ddl-runner/2.2/ebean-ddl-runner-2.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/avaje/classpath-scanner/7.1/classpath-scanner-7.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/avaje/classpath-scanner-api/7.1/classpath-scanner-api-7.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-migration-auto/1.2/ebean-migration-auto-1.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-core-type/13.11.1/ebean-core-type-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-externalmapping-api/13.11.1/ebean-externalmapping-api-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.8-1/antlr4-runtime-4.8-1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-joda-time/13.11.1/ebean-joda-time-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.11.1/joda-time-2.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-jackson-jsonnode/13.11.1/ebean-jackson-jsonnode-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-jackson-mapper/13.11.1/ebean-jackson-mapper-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-datasource/8.4/ebean-datasource-8.4.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-querybean/13.11.1/ebean-querybean-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-all/13.11.1/ebean-platform-all-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-h2/13.11.1/ebean-platform-h2-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-clickhouse/13.11.1/ebean-platform-clickhouse-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-db2/13.11.1/ebean-platform-db2-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-hana/13.11.1/ebean-platform-hana-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-hsqldb/13.11.1/ebean-platform-hsqldb-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-mysql/13.11.1/ebean-platform-mysql-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-mariadb/13.11.1/ebean-platform-mariadb-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-nuodb/13.11.1/ebean-platform-nuodb-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-oracle/13.11.1/ebean-platform-oracle-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-postgres/13.11.1/ebean-platform-postgres-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-sqlanywhere/13.11.1/ebean-platform-sqlanywhere-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-sqlite/13.11.1/ebean-platform-sqlite-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/ebean/ebean-platform-sqlserver/13.11.1/ebean-platform-sqlserver-13.11.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.2.11/logback-classic-1.2.11.jar" />
-          <entry name="$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/1.2.11/logback-core-1.2.11.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/h2database/h2/2.1.214/h2-2.1.214.jar" />
-        </processorPath>
-        <module name="helpers" />
+        <module name="auth" />
       </profile>
     </annotationProcessing>
   </component>

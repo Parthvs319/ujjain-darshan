@@ -1,34 +1,33 @@
 package models.sql;
 
+import helpers.blueprint.models.BaseModel;
 import io.ebean.Model;
 import io.ebean.Finder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import models.enums.UserType;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
+@Data
 @Table(name = "users")
-public class User extends Model {
-
-    public static final Finder<Long, User> find = new Finder<>(User.class);
-
-    @Id
-    private Long id;
-
-    @Column(nullable = false)
-    public String tenantId; // multi-tenant identifier
+public class User extends BaseModel {
 
     @Column(nullable = false, unique = true)
     public String mobile;
 
     public String name;
+
     public String email;
+
     public String residingCity;
 
     @Column(nullable = false)
-    public String userType; // TOURIST, PUJARI, GUIDE, DRIVER, TEMPLE_ADMIN, HOTEL_ADMIN, ADMIN
+    public UserType userType;
 
     public boolean verified = false;
-    public LocalDateTime createdAt = LocalDateTime.now();
 
-    // getters and setters omitted for brevity
 }

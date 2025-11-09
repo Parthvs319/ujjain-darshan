@@ -1,4 +1,4 @@
-package helpers.blueprint;
+package helpers.blueprint.models;
 
 
 import io.ebean.annotation.DbJsonB;

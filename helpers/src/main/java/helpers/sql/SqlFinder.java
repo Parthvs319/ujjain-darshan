@@ -1,4 +1,4 @@
-package helpers.blueprint;
+package helpers.sql;
 
 import io.ebean.Database;
 import io.ebean.ExpressionList;

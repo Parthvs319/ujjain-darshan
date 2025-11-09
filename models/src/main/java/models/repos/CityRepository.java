@@ -1,7 +1,7 @@
 package models.repos;
 
 
-import helpers.blueprint.SqlFinder;
+import helpers.sql.SqlFinder;
 import models.sql.City;
 
 import java.util.List;
