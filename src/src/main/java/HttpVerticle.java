@@ -33,9 +33,11 @@ public class HttpVerticle extends AbstractVerticle {
 
         HttpServerOptions options = new HttpServerOptions().setCompressionSupported(true);
 
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+
         rxVertx.createHttpServer(options)
                 .requestHandler(router)
-                .rxListen(8080)
+                .rxListen(port)
                 .subscribe(server -> {
                     System.out.println("HTTP Server started on port 8080");
                 }, throwable -> {

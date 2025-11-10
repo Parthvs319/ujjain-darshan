@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Parent POM -->
+    <!-- 🔗 Parent -->
     <parent>
         <groupId>com.ujjain</groupId>
         <artifactId>darshan</artifactId>
@@ -13,12 +13,12 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <!-- Module identification -->
+    <!-- 📦 Module -->
     <artifactId>src</artifactId>
     <packaging>jar</packaging>
     <name>Ujjain Darshan - Src Module</name>
 
-    <!-- Dependencies -->
+    <!-- 📚 Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -31,14 +31,18 @@
             <groupId>com.ujjain</groupId>
             <artifactId>helpers</artifactId>
             <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.ujjain</groupId>
             <artifactId>user</artifactId>
             <version>1.0.0</version>
-            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx.version}</version>
         </dependency>
 
         <dependency>
@@ -49,7 +53,7 @@
 
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-core</artifactId>
+            <artifactId>vertx-rx-java</artifactId>
             <version>${vertx.version}</version>
         </dependency>
 
@@ -60,17 +64,44 @@
         </dependency>
     </dependencies>
 
+    <!-- ⚙️ Build Config -->
     <build>
         <plugins>
-            <!-- Maven Exec Plugin to run the application -->
+
+            <!-- ✅ Compiler -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
                 <configuration>
-                    <mainClass>Application</mainClass>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
+
+            <!-- 🚀 Shade Plugin to create Fat JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <!-- 👇 use your real fully qualified main class -->
+                                    <mainClass>Application</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
