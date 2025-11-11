@@ -5,7 +5,6 @@ import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 
-
 public enum SqlConfigFactory {
     MASTER;
 
@@ -19,14 +18,30 @@ public enum SqlConfigFactory {
 
         DataSourceConfig ds = new DataSourceConfig();
 
-        // Fetch from Railway Environment Variables
-        String url = System.getenv("DB_URL");
-        String user = System.getenv("DB_USER");
-        String pass = System.getenv("DB_PASS");
+        // Try fetching the Railway DATABASE_URL
+        String railwayUrl = System.getenv("DATABASE_URL");
+        String jdbcUrl = null, user = null, pass = null;
 
-        // Fallback to your Railway MySQL credentials if not set
-        if (url == null) {
-            url = "jdbc:mysql://mysql.railway.internal:3306/ujjain-darshan-db";
+        if (railwayUrl != null && railwayUrl.startsWith("mysql://")) {
+            try {
+                // Example: mysql://user:pass@host:port/dbname
+                railwayUrl = railwayUrl.substring(8); // remove "mysql://"
+                String[] userInfoSplit = railwayUrl.split("@");
+                String[] creds = userInfoSplit[0].split(":");
+                String[] hostInfo = userInfoSplit[1].split("/");
+                String[] hostPort = hostInfo[0].split(":");
+
+                user = creds[0];
+                pass = creds[1];
+                jdbcUrl = "jdbc:mysql://" + hostPort[0] + ":" + hostPort[1] + "/" + hostInfo[1];
+            } catch (Exception e) {
+                System.err.println("⚠️ Failed to parse DATABASE_URL: " + e.getMessage());
+            }
+        }
+
+        // Fallbacks (for local development)
+        if (jdbcUrl == null) {
+            jdbcUrl = "jdbc:mysql://localhost:3306/ujjain-darshan-db";
         }
         if (user == null) {
             user = "root";
@@ -35,16 +50,15 @@ public enum SqlConfigFactory {
             pass = "PaZIjGjnKVEbyKjMqthELuxgVqVLBNgk";
         }
 
-        // ✅ Use MySQL driver
-        ds.setUrl(url);
+        ds.setUrl(jdbcUrl);
         ds.setUsername(user);
         ds.setPassword(pass);
         ds.setDriver("com.mysql.cj.jdbc.Driver");
 
         config.setDataSourceConfig(ds);
-
         this.database = DatabaseFactory.create(config);
-        System.out.println("✅ MySQL initialized successfully (" + url + ")");
+
+        System.out.println("✅ MySQL initialized successfully with URL: " + jdbcUrl);
     }
 
     public Database getServer() {
