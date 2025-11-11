@@ -5,9 +5,7 @@ import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 
-/**
- * Ebean Database Factory — works locally & on Railway using env vars.
- */
+
 public enum SqlConfigFactory {
     MASTER;
 
