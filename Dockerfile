@@ -1,22 +1,19 @@
-# Step 1: Build stage
+# Step 1: Build Stage
 FROM maven:3.9.4-eclipse-temurin-17 AS builder
 WORKDIR /app
 
-# Copy everything
+# Copy all modules
 COPY . .
 
-# Build the project (this runs mvn clean package)
+# Build all modules, skip tests
 RUN mvn -B clean package -DskipTests
 
-# Step 2: Runtime stage
+# Step 2: Runtime Stage
 FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
-# Copy the built JAR from the previous stage
+# Copy final JAR from src module
 COPY --from=builder /app/src/target/src-1.0.0.jar app.jar
 
-# Expose port
 EXPOSE 8080
-
-# Run the JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]
