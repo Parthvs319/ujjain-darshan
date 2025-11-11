@@ -6,7 +6,7 @@ import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 
 /**
- * Ebean Database Factory — works locally & on Render using env vars.
+ * Ebean Database Factory — works locally & on Railway using env vars.
  */
 public enum SqlConfigFactory {
     MASTER;
@@ -21,29 +21,32 @@ public enum SqlConfigFactory {
 
         DataSourceConfig ds = new DataSourceConfig();
 
+        // Fetch from Railway Environment Variables
         String url = System.getenv("DB_URL");
         String user = System.getenv("DB_USER");
         String pass = System.getenv("DB_PASS");
 
+        // Fallback to your Railway MySQL credentials if not set
         if (url == null) {
-            url = "jdbc:postgresql://dpg-d491agp5pdvs73cls160-a.oregon-postgres.render.com/ujjain_darshan_db";
+            url = "jdbc:mysql://mysql.railway.internal:3306/ujjain-darshan-db";
         }
         if (user == null) {
-            user = "ujjain_darshan_db_user";
+            user = "root";
         }
         if (pass == null) {
-            pass = "kWbYpwS5yFfRcFKjG5sI0yIW3DCO4HIV";
+            pass = "PaZIjGjnKVEbyKjMqthELuxgVqVLBNgk";
         }
 
+        // ✅ Use MySQL driver
         ds.setUrl(url);
         ds.setUsername(user);
         ds.setPassword(pass);
-        ds.setDriver("org.postgresql.Driver");
+        ds.setDriver("com.mysql.cj.jdbc.Driver");
 
         config.setDataSourceConfig(ds);
 
         this.database = DatabaseFactory.create(config);
-        System.out.println("✅ PostgreSQL initialized successfully (" + url + ")");
+        System.out.println("✅ MySQL initialized successfully (" + url + ")");
     }
 
     public Database getServer() {
