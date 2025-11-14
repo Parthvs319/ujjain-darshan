@@ -59,7 +59,11 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.ebean</groupId>
+            <artifactId>ebean-mysql</artifactId>
+            <version>${ebean.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
