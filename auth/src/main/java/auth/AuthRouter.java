@@ -11,7 +11,7 @@ public enum AuthRouter implements SubRouterProtocol {
     @Override
     public Router router(Vertx vertx) {
         Router router = Router.router(vertx);
-        router.post("/getToken").handler(GenerateBearerTokenController.INSTANCE::handle);
+        router.get("/getToken").handler(GenerateBearerTokenController.INSTANCE::handle);
 
 //        router.get("/").handler(GetAllCitiesController.INSTANCE::handle);
 //        router.delete("/:id").handler(.INSTANCE::handle);
