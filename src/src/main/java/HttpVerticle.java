@@ -1,3 +1,4 @@
+import auth.AuthRouter;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerOptions;
@@ -30,6 +31,7 @@ public class HttpVerticle extends AbstractVerticle {
         router.get("/health").handler(ctx -> ctx.response().end("OK"));
 
         router.mountSubRouter("/user", UserRouter.INSTANCE.router(rxVertx));
+        router.mountSubRouter("/auth", AuthRouter.INSTANCE.router(rxVertx));
 
         HttpServerOptions options = new HttpServerOptions().setCompressionSupported(true);
 
