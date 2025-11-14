@@ -33,6 +33,11 @@
             <version>${vertx.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.ebean</groupId>
+            <artifactId>ebean-mysql</artifactId>
+            <version>${ebean.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-rx-java</artifactId>
         </dependency>
