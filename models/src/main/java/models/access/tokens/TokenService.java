@@ -1,4 +1,4 @@
-package models.tokens;
+package models.access.tokens;
 
 
 import com.auth0.jwt.JWT;
@@ -8,7 +8,9 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 
 import java.util.Date;
 
-public class TokenService {
+public enum TokenService {
+
+    INSTANCE;
 
     private static final String SECRET = "D9dka98s-1XnPwLq3uT2z8-3YtKp0sVd";
     private static final String ISSUER = "my-app";
@@ -33,9 +35,9 @@ public class TokenService {
                 .build();
     }
 
-
-
-
+    public static DecodedJWT decodedJWT(String token) {
+        return JWT.decode(token);
+    }
 
     public static DecodedJWT verifyToken(String token) {
         JWTVerifier verifier = JWT.require(algorithm)

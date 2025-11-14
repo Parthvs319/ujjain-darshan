@@ -23,6 +23,8 @@ public class User extends BaseModel {
 
     public String email;
 
+    public String password; // To be stored in BCyrpt
+
     public String residingCity;
 
     @Column(nullable = false)
