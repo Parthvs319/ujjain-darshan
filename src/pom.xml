@@ -98,7 +98,6 @@
                     <release>${java.version}</release>
                 </configuration>
             </plugin>
-
             <!-- Fat JAR with Shade -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
