@@ -103,6 +103,11 @@
         <version>${ebean.version}</version>
       </dependency>
       <dependency>
+        <groupId>io.ebean</groupId>
+        <artifactId>ebean-platform-all</artifactId>
+        <version>${ebean.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
         <version>2.11.0</version>

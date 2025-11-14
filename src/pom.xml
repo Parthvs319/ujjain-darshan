@@ -65,6 +65,11 @@
             <version>${ebean.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.ebean</groupId>
+            <artifactId>ebean-platform-all</artifactId>
+            <version>${ebean.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
         </dependency>
