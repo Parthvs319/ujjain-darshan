@@ -3,19 +3,16 @@ package user;
 import helpers.annotations.UserAnnotation;
 import helpers.blueprint.enums.RequestItemType;
 import helpers.interfaces.BaseController;
-import helpers.utils.RequestItem;
-import helpers.utils.ResponseUtils;
-import helpers.utils.SuccessResponse;
+import helpers.utils.*;
+import io.vertx.rxjava.core.RxHelper;
 import io.vertx.rxjava.ext.web.RoutingContext;
-import models.access.middlewear.UserAccessMiddleware;
-import models.body.UserLoginRequest;
 import models.repos.UserRepository;
 import models.sql.User;
 import models.enums.UserType;
 import org.mindrot.jbcrypt.BCrypt;
 import models.access.tokens.BearerToken;
 import models.access.tokens.TokenService;
-
+import rx.Single;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,18 +33,26 @@ public enum UserSignUpController implements BaseController {
         return items;
     }
 
+    private RequestZipped map(RoutingContext event){
+        return RequestHelper.INSTANCE.requestZipped(event,items());
+    }
+
     @Override
     public void handle(RoutingContext event) {
 
-        UserAccessMiddleware.INSTANCE.with(event, items(), this)
-                .map(this::map)
+        Single.just(event)
+                .subscribeOn(RxHelper.blockingScheduler(event.vertx()))
+                .map(this::map).
+                map(this::map)
                 .subscribe(
-                        response -> ResponseUtils.INSTANCE.writeJsonResponse(event, response),
-                        error -> ResponseUtils.INSTANCE.handleError(event, error)
+                        o -> ResponseUtils.INSTANCE.writeJsonResponse(event, o),
+                        error -> {
+                            ResponseUtils.INSTANCE.handleError(event, error);
+                        }
                 );
     }
 
-    private SuccessResponse map(UserLoginRequest request) {
+    private SuccessResponse map(RequestZipped request) {
         String mobile = request.getRequest().get("mobile");
         String password = request.getRequest().get("password");
         String name = request.getRequest().get("name");
