@@ -12,5 +12,8 @@ public enum UserRepository {
         return finder.query().where().eq("t0.id" , id).setMaxRows(1).findOne();
     }
 
+    public User byMobile(String mobile) {
+        return finder.query().where().eq("t0.mobile" , mobile).setMaxRows(1).findOne();
+    }
 
 }
