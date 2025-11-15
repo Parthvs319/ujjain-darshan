@@ -26,11 +26,11 @@ public enum UserSignUpController implements BaseController {
 
     public List<RequestItem> items() {
         List<RequestItem> items = new ArrayList<>();
-
         items.add(RequestItem.builder().key("mobile").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("password").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("name").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("email").itemType(RequestItemType.STRING).required(true).build());
+        items.add(RequestItem.builder().key("userType").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("residingCity").itemType(RequestItemType.STRING).required(false).build());
 
         return items;
@@ -52,6 +52,7 @@ public enum UserSignUpController implements BaseController {
         String password = request.getRequest().get("password");
         String name = request.getRequest().get("name");
         String email = request.getRequest().get("email");
+        String userType = request.getRequest().get("userType");
         String residingCity = request.getRequest().get("residingCity");
 
         if (mobile == null || mobile.trim().isEmpty()) {
@@ -82,7 +83,7 @@ public enum UserSignUpController implements BaseController {
         user.setEmail(email);
         user.setName(name);
         user.setResidingCity(residingCity);
-        user.setUserType(UserType.);
+        user.setUserType(UserType.valueOf(userType));
         user.setVerified(false);
         user.save();
         BearerToken token = TokenService.generateToken(
