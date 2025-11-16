@@ -10,69 +10,44 @@
         <groupId>com.ujjain</groupId>
         <artifactId>darshan</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath> <!-- important so Maven finds parent -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Maven Central Repository</name>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-    </repositories>
-    <!-- Module identification -->
     <artifactId>models</artifactId>
     <packaging>jar</packaging>
-    <name>Ujjain Darshan - Models Module</name>
+    <name>Ujjain Darshan - Models</name>
 
-    <!-- Dependencies -->
     <dependencies>
+
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.32</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean-ddl-generator</artifactId>
-            <version>${ebean.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean-migration</artifactId>
-            <version>${ebean.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-web</artifactId>
-            <version>${vertx.version}</version>
-        </dependency>
 
+        <!-- Ebean Core (version comes from parent) -->
         <dependency>
             <groupId>io.ebean</groupId>
             <artifactId>ebean</artifactId>
-            <version>${ebean.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>4.4.0</version>
-        </dependency>
+
+        <!-- Helper module -->
         <dependency>
             <groupId>com.ujjain</groupId>
             <artifactId>helpers</artifactId>
             <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
+
     </dependencies>
+
     <build>
         <plugins>
+
             <!-- Ebean Enhancer -->
             <plugin>
                 <groupId>io.ebean</groupId>
                 <artifactId>ebean-maven-plugin</artifactId>
-                <version>${ebean.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -89,12 +64,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
                 <configuration>
                     <source>17</source>
                     <target>17</target>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
+
 </project>

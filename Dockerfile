@@ -1,14 +1,19 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS builder
 WORKDIR /app
 
-COPY . .
+COPY pom.xml .
+COPY helpers ./helpers
+COPY models ./models
+COPY user ./user
+COPY auth ./auth
+COPY app ./app
 
-RUN mvn -B clean package -DskipTests
+RUN mvn -q -DskipTests package
 
-FROM eclipse-temurin:17-jre
-WORKDIR /com
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
 
 COPY --from=builder /app/app/target/app-1.0.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
