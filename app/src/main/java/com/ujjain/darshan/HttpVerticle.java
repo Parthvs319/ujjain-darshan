@@ -1,4 +1,4 @@
-package app;
+package com.ujjain.darshan;
 
 import auth.AuthRouter;
 import io.vertx.core.AbstractVerticle;

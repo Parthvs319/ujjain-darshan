@@ -1,4 +1,4 @@
-package app;
+package com.ujjain.darshan;
 
 import helpers.sql.SqlConfigFactory;
 import io.vertx.core.DeploymentOptions;
