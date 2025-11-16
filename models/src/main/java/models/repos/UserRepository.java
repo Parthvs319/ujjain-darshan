@@ -3,6 +3,8 @@ package models.repos;
 import helpers.sql.SqlFinder;
 import models.sql.User;
 
+import java.util.List;
+
 public enum UserRepository {
     INSTANCE;
 
@@ -14,6 +16,10 @@ public enum UserRepository {
 
     public User byMobile(String mobile) {
         return finder.query().where().eq("t0.mobile" , mobile).setMaxRows(1).findOne();
+    }
+
+    public List<User> finder() {
+        return finder.query().findList();
     }
 
 }

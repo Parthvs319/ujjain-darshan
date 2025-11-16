@@ -16,26 +16,20 @@ public enum SqlConfigFactory {
         config.setRegister(true);
         config.setDefaultServer(true);
 
-        // Register entity packages - this is critical for Ebean to find entities
         config.addPackage("models.sql");
         config.addPackage("helpers.blueprint.models");
         
-        // Disable DDL generation and migration by default (enable only in dev if needed)
-        // Set to false to avoid requiring ebean-ddl-generator and ebean-migration in production
         config.setDdlGenerate(false);
         config.setDdlRun(false);
 
-        // Try to load from properties file if available (will override above settings)
         try {
             config.loadFromProperties();
         } catch (Exception e) {
-            // Properties file not found or not accessible, continue with explicit config
             System.out.println("⚠️  Could not load ebean.properties, using explicit configuration");
         }
 
         DataSourceConfig ds = new DataSourceConfig();
 
-        // Railway environment variables (internal)
         String host = System.getenv("MYSQLHOST");
         String port = System.getenv("MYSQLPORT");
         String db = System.getenv("MYSQLDATABASE");
