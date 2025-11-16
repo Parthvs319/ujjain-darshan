@@ -78,9 +78,6 @@ public enum UserSignUpController implements BaseController {
         if (email == null || email.isEmpty())
             throw new RuntimeException("Email is required");
 
-        User existing = UserRepository.INSTANCE.byMobile(mobile);
-        if (existing != null)
-            throw new RuntimeException("Mobile already registered");
 
         User user = new User();
         user.setMobile(mobile);
