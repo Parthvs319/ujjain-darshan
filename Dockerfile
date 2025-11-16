@@ -1,19 +1,14 @@
-# Step 1: Build Stage
-FROM maven:3.9.4-eclipse-temurin-17 AS builder
-WORKDIR /com
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
+WORKDIR /app
 
-# Copy all project files
 COPY . .
 
-# Build all modules, skip tests
 RUN mvn -B clean package -DskipTests
 
-# Step 2: Runtime Stage
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:17-jre
 WORKDIR /com
 
-COPY --from=builder /app/target/*.jar app.jar
+COPY --from=builder /app/app/target/app-1.0.0.jar app.jar
 
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "com.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
