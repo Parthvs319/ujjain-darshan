@@ -20,7 +20,13 @@ public enum SqlConfigFactory {
         config.addPackage("models.sql");
         config.addPackage("helpers.blueprint.models");
         
-        // Try to load from properties file if available
+        // Disable DDL generation and migration by default (enable only in dev if needed)
+        // Set to false to avoid requiring ebean-ddl-generator and ebean-migration in production
+        config.setDdlGenerate(false);
+        config.setDdlRun(false);
+        config.setMigrationRun(false);
+        
+        // Try to load from properties file if available (will override above settings)
         try {
             config.loadFromProperties();
         } catch (Exception e) {

@@ -70,6 +70,16 @@
             <artifactId>ebean-platform-all</artifactId>
             <version>${ebean.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.ebean</groupId>
+            <artifactId>ebean-ddl-generator</artifactId>
+            <version>${ebean.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.ebean</groupId>
+            <artifactId>ebean-migration</artifactId>
+            <version>${ebean.version}</version>
+        </dependency>
 
         <!-- MySQL Driver -->
         <dependency>

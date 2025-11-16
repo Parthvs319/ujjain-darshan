@@ -14,8 +14,7 @@ import javax.persistence.*;
 public class Hotel extends BaseModel {
     public static final Finder<Long, Hotel> find = new Finder<>(Hotel.class);
 
-    @Id
-    public Long id;
+    // Note: id field is inherited from BaseModel, no need to redefine it
 
     @Column(nullable = false)
     public String tenantId;
