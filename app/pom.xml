@@ -18,6 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>com.ujjain</groupId>
+            <artifactId>models</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ujjain</groupId>
             <artifactId>helpers</artifactId>
             <version>1.0.0</version>
         </dependency>
