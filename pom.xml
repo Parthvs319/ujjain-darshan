@@ -195,6 +195,21 @@
             <release>${java.version}</release>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>io.ebean</groupId>
+          <artifactId>ebean-maven-plugin</artifactId>
+          <version>${ebean.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>enhance</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <packages>models.sql</packages>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
