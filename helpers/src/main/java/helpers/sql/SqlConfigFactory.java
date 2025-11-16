@@ -24,8 +24,7 @@ public enum SqlConfigFactory {
         // Set to false to avoid requiring ebean-ddl-generator and ebean-migration in production
         config.setDdlGenerate(false);
         config.setDdlRun(false);
-        config.setMigrationRun(false);
-        
+
         // Try to load from properties file if available (will override above settings)
         try {
             config.loadFromProperties();
