@@ -16,6 +16,18 @@ public enum SqlConfigFactory {
         config.setRegister(true);
         config.setDefaultServer(true);
 
+        // Register entity packages - this is critical for Ebean to find entities
+        config.addPackage("models.sql");
+        config.addPackage("helpers.blueprint.models");
+        
+        // Try to load from properties file if available
+        try {
+            config.loadFromProperties();
+        } catch (Exception e) {
+            // Properties file not found or not accessible, continue with explicit config
+            System.out.println("⚠️  Could not load ebean.properties, using explicit configuration");
+        }
+
         DataSourceConfig ds = new DataSourceConfig();
 
         // Railway environment variables (internal)
@@ -43,6 +55,7 @@ public enum SqlConfigFactory {
 
         this.database = DatabaseFactory.create(config);
         System.out.println("✅ Connected to MySQL: " + jdbcUrl);
+        System.out.println("✅ Registered entity packages: models.sql, helpers.blueprint.models");
     }
 
     public Database getServer() {
