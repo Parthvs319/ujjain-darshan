@@ -9,17 +9,20 @@
         <outputRelativeToContentRoot value="true" />
         <module name="models" />
         <module name="helpers" />
-        <module name="src" />
         <module name="user" />
         <module name="auth" />
+        <module name="src" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="asdfgh" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="asdfgh" options="" />
       <module name="helpers" options="" />
       <module name="models" options="" />
-      <module name="src" options="" />
       <module name="user" options="" />
     </option>
   </component>
