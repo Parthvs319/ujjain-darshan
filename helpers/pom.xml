@@ -81,6 +81,26 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            
+            <!-- Ebean Enhancer for BaseModel -->
+            <plugin>
+                <groupId>io.ebean</groupId>
+                <artifactId>ebean-maven-plugin</artifactId>
+                <version>${ebean.version}</version>
+                <executions>
+                    <execution>
+                        <id>main</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packages>helpers.blueprint.models</packages>
+                    <transformArgs>debug=1</transformArgs>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

@@ -48,8 +48,11 @@
             <plugin>
                 <groupId>io.ebean</groupId>
                 <artifactId>ebean-maven-plugin</artifactId>
+                <version>${ebean.version}</version>
                 <executions>
                     <execution>
+                        <id>main</id>
+                        <phase>process-classes</phase>
                         <goals>
                             <goal>enhance</goal>
                         </goals>
@@ -57,6 +60,7 @@
                 </executions>
                 <configuration>
                     <packages>models.sql</packages>
+                    <transformArgs>debug=1</transformArgs>
                 </configuration>
             </plugin>
 
