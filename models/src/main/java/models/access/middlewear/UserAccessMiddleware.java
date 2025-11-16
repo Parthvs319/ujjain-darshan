@@ -20,7 +20,8 @@ public enum UserAccessMiddleware implements BaseMiddleware {
             List<RequestItem> items , Object clz
     ) {
         UserAnnotation role = null;
-        for (Annotation annotation : clz.getClass().getAnnotations()) {
+        Class<?> targetClass = (clz instanceof Class) ? (Class<?>) clz : clz.getClass();
+        for (Annotation annotation : targetClass.getAnnotations()) {
             if(annotation instanceof UserAnnotation){
                 role = (UserAnnotation) annotation;
             }
