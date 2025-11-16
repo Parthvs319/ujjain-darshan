@@ -22,10 +22,12 @@ public enum TokenService {
                 .withIssuer(ISSUER)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 3600_000)) // expires in 1 hour
+                .withClaim("id", userId)
                 .withClaim("userId", userId)
                 .withClaim("email", email)
-                .withClaim("type", userType)
-                .sign(algorithm); // 🔐 HMAC-SHA256 signing
+                .withClaim("type", "access_token")
+                .withClaim("userType", userType)
+                .sign(algorithm);
 
         return BearerToken.builder().accessToken(token)
                 .name(userName)
