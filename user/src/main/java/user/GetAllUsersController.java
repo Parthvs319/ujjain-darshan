@@ -1,5 +1,6 @@
 package user;
 
+import helpers.annotations.UserAnnotation;
 import helpers.customErrors.RoutingError;
 import helpers.interfaces.BaseController;
 import helpers.utils.ResponseUtils;
@@ -12,6 +13,7 @@ import java.util.List;
 import models.enums.UserType;
 import models.repos.UserRepository;
 
+@UserAnnotation
 public enum GetAllUsersController implements BaseController {
 
     INSTANCE;
