@@ -21,12 +21,6 @@ public enum UserLoginController implements BaseController {
 
     public List<RequestItem> items() {
         List<helpers.utils.RequestItem> items = new ArrayList<>();
-        items.add(helpers.utils.RequestItem.builder().key("mobile").itemType(RequestItemType.STRING).required(true).build());
-        items.add(helpers.utils.RequestItem.builder().key("password").itemType(RequestItemType.STRING).required(true).build());
-        items.add(helpers.utils.RequestItem.builder().key("name").itemType(RequestItemType.STRING).required(true).build());
-        items.add(helpers.utils.RequestItem.builder().key("email").itemType(RequestItemType.STRING).required(true).build());
-        items.add(helpers.utils.RequestItem.builder().key("userType").itemType(RequestItemType.STRING).required(true).build());
-        items.add(helpers.utils.RequestItem.builder().key("residingCity").itemType(RequestItemType.STRING).required(false).build());
         return items;
     }
 
