@@ -39,6 +39,7 @@ public enum GetAllUsersController implements BaseController {
             User u = new User();
             u.setMobile(dbUser.getMobile());
             u.setName(dbUser.getName());
+            u.setActive(dbUser.isActive());
             u.setEmail(dbUser.getEmail());
             u.setResidingCity(dbUser.getResidingCity());
             u.setUserType(dbUser.getUserType());
@@ -62,6 +63,8 @@ public enum GetAllUsersController implements BaseController {
         public String email;
 
         public String password;
+
+        public boolean active;
 
         public String residingCity;
 
