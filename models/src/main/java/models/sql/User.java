@@ -32,4 +32,6 @@ public class User extends BaseModel {
 
     public boolean verified = false;
 
+    public boolean active = true;
+
 }
