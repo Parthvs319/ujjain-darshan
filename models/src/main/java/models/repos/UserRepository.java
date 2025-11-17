@@ -18,6 +18,10 @@ public enum UserRepository {
         return finder.query().where().eq("t0.mobile" , mobile).setMaxRows(1).findOne();
     }
 
+    public User byEmail(String email) {
+        return finder.query().where().eq("t0.email" , email).setMaxRows(1).findOne();
+    }
+
     public List<User> finder() {
         return finder.query().findList();
     }

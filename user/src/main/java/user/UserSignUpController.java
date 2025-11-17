@@ -39,7 +39,6 @@ public enum UserSignUpController implements BaseController {
 
     @Override
     public void handle(RoutingContext event) {
-
         Single.just(event)
                 .subscribeOn(RxHelper.blockingScheduler(event.vertx()))
                 .map(this::map).
@@ -81,7 +80,7 @@ public enum UserSignUpController implements BaseController {
 
         User user = new User();
         user.setMobile(mobile);
-        user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+        user.setPassword(PasswordUtils.INSTANCE.hash(password));
         user.setEmail(email);
         user.setName(name);
         user.setResidingCity(residingCity);

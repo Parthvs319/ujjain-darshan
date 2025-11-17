@@ -1,15 +1,16 @@
 package user;
 
 import helpers.blueprint.enums.RequestItemType;
+import helpers.customErrors.RoutingError;
 import helpers.interfaces.BaseController;
-import helpers.utils.RequestItem;
-import helpers.utils.RequestZipped;
-import helpers.utils.ResponseUtils;
-import helpers.utils.SuccessResponse;
+import helpers.utils.*;
 import io.vertx.rxjava.core.RxHelper;
 import io.vertx.rxjava.ext.web.RoutingContext;
-import models.access.middlewear.UserAccessMiddleware;
-import models.body.UserLoginRequest;
+import lombok.Data;
+import models.access.tokens.BearerToken;
+import models.access.tokens.TokenService;
+import models.repos.UserRepository;
+import models.sql.User;
 import rx.Single;
 
 import java.util.ArrayList;
@@ -21,14 +22,18 @@ public enum UserLoginController implements BaseController {
 
     public List<RequestItem> items() {
         List<helpers.utils.RequestItem> items = new ArrayList<>();
+        items.add(RequestItem.builder().key("email").itemType(RequestItemType.STRING).required(false).build());
+        items.add(RequestItem.builder().key("mobile").itemType(RequestItemType.STRING).required(false).build());
+        items.add(RequestItem.builder().key("password").itemType(RequestItemType.STRING).required(true).build());
         return items;
     }
 
     @Override
     public void handle(RoutingContext event) {
-
-        UserAccessMiddleware.INSTANCE.with(event , items() ,  this.getClass())
-                .map(this::map)
+        Single.just(event)
+                .subscribeOn(RxHelper.blockingScheduler(event.vertx()))
+                .map(this::map).
+                map(this::map)
                 .subscribe(
                         o -> ResponseUtils.INSTANCE.writeJsonResponse(event, o),
                         error -> {
@@ -37,11 +42,41 @@ public enum UserLoginController implements BaseController {
                 );
     }
 
-    private SuccessResponse map(UserLoginRequest request) {
+    private RequestZipped map(RoutingContext event){
+        return RequestHelper.INSTANCE.requestZipped(event,items());
+    }
 
-
-
-        return new SuccessResponse();
+    private Response map(RequestZipped request) {
+        Response response = new Response();
+        boolean isMobileLogin = true;
+        User user = null;
+        if(request.getRequest().isPresent("mobile")) {
+            user = UserRepository.INSTANCE.byMobile(request.getRequest().get("mobile"));
+        } else if(request.getRequest().isPresent("email")) {
+            isMobileLogin = false;
+            user = UserRepository.INSTANCE.byEmail(request.getRequest().get("email"));
+        } else {
+            throw new RuntimeException("Either mobile or email is mandatory to pass !");
+        }
+        if(user == null) {
+            if(isMobileLogin)
+                throw new RoutingError("Invalid Mobile Number Passed !");
+            else
+                throw new RoutingError("Invalid Email Passed !");
+        } else {
+            if(PasswordUtils.INSTANCE.match(request.getRequest().get("password") , user.getPassword())) {
+                response.setSuccess(true);
+                response.setBearerToken(TokenService.generateToken(user.getId() , user.getEmail() , user.getUserType().getValue() , user.getName()));
+            } else {
+                throw new RoutingError("Invalid Password ! Please try with a valid password !");
+            }
+        }
+        return response;
+    }
+    @Data
+    class Response {
+        boolean success = false;
+        BearerToken bearerToken = null;
     }
 
 }
