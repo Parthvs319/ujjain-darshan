@@ -3,13 +3,15 @@ package helpers.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class PasswordUtils {
+public enum PasswordUtils {
 
-    public static String hash(String plain) {
+    INSTANCE;
+
+    public String hash(String plain) {
         return BCrypt.hashpw(plain, BCrypt.gensalt(12));
     }
 
-    public static boolean match(String plain, String hashed) {
+    public boolean match(String plain, String hashed) {
         return BCrypt.checkpw(plain, hashed);
     }
 }
