@@ -2,6 +2,7 @@ package user;
 
 import helpers.annotations.UserAnnotation;
 import helpers.blueprint.enums.RequestItemType;
+import helpers.customErrors.RoutingError;
 import helpers.interfaces.BaseController;
 import helpers.utils.*;
 import io.vertx.rxjava.core.RxHelper;
@@ -9,7 +10,6 @@ import io.vertx.rxjava.ext.web.RoutingContext;
 import models.repos.UserRepository;
 import models.sql.User;
 import models.enums.UserType;
-import org.mindrot.jbcrypt.BCrypt;
 import models.access.tokens.BearerToken;
 import models.access.tokens.TokenService;
 import rx.Single;
@@ -26,7 +26,7 @@ public enum UserSignUpController implements BaseController {
         items.add(RequestItem.builder().key("mobile").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("password").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("name").itemType(RequestItemType.STRING).required(true).build());
-        items.add(RequestItem.builder().key("email").itemType(RequestItemType.STRING).required(true).build());
+        items.add(RequestItem.builder().key("email").itemType(RequestItemType.STRING).required(false).build());
         items.add(RequestItem.builder().key("userType").itemType(RequestItemType.STRING).required(true).build());
         items.add(RequestItem.builder().key("residingCity").itemType(RequestItemType.STRING).required(false).build());
 
@@ -74,9 +74,15 @@ public enum UserSignUpController implements BaseController {
         }
         if (password == null || password.isEmpty())
             throw new RuntimeException("Password is required");
-        if (email == null || email.isEmpty())
-            throw new RuntimeException("Email is required");
 
+
+        if(UserRepository.INSTANCE.byMobile(mobile) != null) {
+            throw new RoutingError("User with mobile already exists !");
+        }
+
+        if(email != null && UserRepository.INSTANCE.byEmail(email) != null) {
+            throw new RoutingError("User with email already exists !");
+        }
 
         User user = new User();
         user.setMobile(mobile);
