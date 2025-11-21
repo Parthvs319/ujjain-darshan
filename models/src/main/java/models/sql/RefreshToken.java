@@ -40,7 +40,7 @@ public class RefreshToken extends BaseModel {
     public static RefreshToken byToken(String hashedToken) {
         return find.query()
                 .where()
-                .eq("tokenHash", hashedToken)
+                .eq("token_hash", hashedToken)
                 .eq("revoked", false)
                 .setMaxRows(1)
                 .findOne();

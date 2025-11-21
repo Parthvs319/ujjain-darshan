@@ -44,8 +44,6 @@ public enum TokenService {
                 .withClaim("type", "refresh_token")
                 .sign(algorithm);
 
-        String hashed = PasswordUtils.INSTANCE.hash(refreshToken);
-
         RefreshToken old = RefreshToken.byUserId(userId);
         if (old != null) {
             old.setRevoked(true);
@@ -58,7 +56,7 @@ public enum TokenService {
             throw new RoutingError("User not found !");
         }
         ref.setUser(user);
-        ref.setTokenHash(hashed);
+        ref.setTokenHash(refreshToken);
         ref.setExpiresAt(new Date(refreshExpiry));
         ref.save();
 
