@@ -84,7 +84,7 @@ public enum UserSignUpController implements BaseController {
         user.setEmail(email);
         user.setName(name);
         user.setResidingCity(residingCity);
-        user.setUserType(UserType.valueOf(userType));
+        user.setUserType(UserType.valueOf(userType.toUpperCase()));
         user.setVerified(false);
         user.save();
         BearerToken token = TokenService.generateToken(
