@@ -35,8 +35,7 @@ public enum RefreshTokenController implements ParamsController {
         if (refreshToken == null) {
             throw new RoutingError("refreshToken missing");
         }
-        String hashed = PasswordUtils.INSTANCE.hash(refreshToken);
-        models.sql.RefreshToken stored = models.sql.RefreshToken.byToken(hashed);
+        models.sql.RefreshToken stored = models.sql.RefreshToken.byToken(refreshToken);
         if (stored == null || stored.getRevoked()) {
             throw new RoutingError("Invalid refresh token");
         }
