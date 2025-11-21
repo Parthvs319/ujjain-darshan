@@ -31,7 +31,7 @@ public class RefreshToken extends BaseModel {
     public static RefreshToken byUserId(Long userId) {
         return find.query()
                 .where()
-                .eq("userId", userId)
+                .eq("user_id", userId)
                 .eq("revoked", false)
                 .setMaxRows(1)
                 .findOne();
