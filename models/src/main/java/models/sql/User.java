@@ -34,4 +34,6 @@ public class User extends BaseModel {
 
     public boolean active = true;
 
+    private String currentOtp;
+
 }

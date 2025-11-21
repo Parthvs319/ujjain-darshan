@@ -24,7 +24,8 @@ public enum UserLoginController implements BaseController {
         List<helpers.utils.RequestItem> items = new ArrayList<>();
         items.add(RequestItem.builder().key("email").itemType(RequestItemType.STRING).required(false).build());
         items.add(RequestItem.builder().key("mobile").itemType(RequestItemType.STRING).required(false).build());
-        items.add(RequestItem.builder().key("password").itemType(RequestItemType.STRING).required(true).build());
+        items.add(RequestItem.builder().key("password").itemType(RequestItemType.STRING).required(false).build());
+        items.add(RequestItem.builder().key("otp").itemType(RequestItemType.STRING).required(false).build());
         return items;
     }
 
@@ -64,11 +65,20 @@ public enum UserLoginController implements BaseController {
             else
                 throw new RoutingError("Invalid Email Passed !");
         } else {
-            if(PasswordUtils.INSTANCE.match(request.getRequest().get("password") , user.getPassword())) {
-                response.setSuccess(true);
-                response.setBearerToken(TokenService.generateToken(user.getId() , user.getEmail() , user.getUserType().getValue() , user.getName()));
-            } else {
-                throw new RoutingError("Invalid Password ! Please try with a valid password !");
+            if(request.getRequest().isPresent("password")) {
+                if(PasswordUtils.INSTANCE.match(request.getRequest().get("password") , user.getPassword())) {
+                    response.setSuccess(true);
+                    response.setBearerToken(TokenService.generateToken(user.getId() , user.getEmail() , user.getUserType().getValue() , user.getName()));
+                } else {
+                    throw new RoutingError("Invalid Password ! Please try with a valid password !");
+                }
+            } else if (request.getRequest().isPresent("otp")) {
+                if(user.getCurrentOtp().equalsIgnoreCase(request.getRequest().get("otp"))) {
+                    response.setSuccess(true);
+                    response.setBearerToken(TokenService.generateToken(user.getId() , user.getEmail() , user.getUserType().getValue() , user.getName()));
+                } else {
+                    throw new RoutingError("Invalid Otp ! Please try with a valid otp !");
+                }
             }
         }
         return response;
