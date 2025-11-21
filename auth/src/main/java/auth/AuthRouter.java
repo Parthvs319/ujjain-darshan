@@ -12,6 +12,7 @@ public enum AuthRouter implements SubRouterProtocol {
     public Router router(Vertx vertx) {
         Router router = Router.router(vertx);
         router.get("/getToken").handler(GenerateBearerTokenController.INSTANCE::handle);
+        router.get("/refresh").handler(RefreshTokenController.INSTANCE::handle);
 
 //        router.get("/").handler(GetAllCitiesController.INSTANCE::handle);
 //        router.delete("/:id").handler(.INSTANCE::handle);
