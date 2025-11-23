@@ -11,7 +11,8 @@ public enum UserRouter implements SubRouterProtocol {
     @Override
     public Router router(Vertx vertx) {
         Router router = Router.router(vertx);
-        router.post("/getAllUsers").handler(GetAllUsersController.INSTANCE::handle);
+        router.get("/getAllUsers").handler(GetAllUsersController.INSTANCE::handle);
+        router.get("/:type/getAllUsers").handler(GetAllUsersByTypeController.INSTANCE::handle);
         router.post("/signUp").handler(UserSignUpController.INSTANCE::handle);
         router.post("/login").handler(UserLoginController.INSTANCE::handle);
         router.post("/deactivateUser").handler(DeactivateUserController.INSTANCE::handle);
