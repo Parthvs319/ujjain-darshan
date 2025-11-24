@@ -1,6 +1,7 @@
 package models.repos;
 
 import helpers.sql.SqlFinder;
+import io.ebean.ExpressionList;
 import models.sql.User;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public enum UserRepository {
     public User byId(Long id ) {
         return finder.query().where().eq("t0.id" , id).setMaxRows(1).findOne();
     }
-
+    
     public User byMobile(String mobile) {
         return finder.query().where().eq("t0.mobile" , mobile).setMaxRows(1).findOne();
     }
@@ -24,6 +25,10 @@ public enum UserRepository {
 
     public List<User> finder() {
         return finder.query().findList();
+    }
+
+    public ExpressionList<User> exprFinder() {
+        return finder.query().where();
     }
 
 }
