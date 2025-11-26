@@ -10,15 +10,13 @@
         <groupId>com.ujjain</groupId>
         <artifactId>darshan</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath> <!-- important so Maven finds parent -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.ujjain</groupId>
-
-    <!-- Module identification -->
     <artifactId>hotel</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Ujjain Darshan - Helpers Module</name>
+    <name>Ujjain Darshan - Hotel Module</name>
 
     <!-- Dependencies -->
     <dependencies>
@@ -44,10 +42,6 @@
             <artifactId>vertx-web</artifactId>
             <version>${vertx.version}</version>
         </dependency>
-
-
-
-
         <dependency>
             <groupId>io.ebean</groupId>
             <artifactId>ebean</artifactId>
