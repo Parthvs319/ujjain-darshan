@@ -6,7 +6,7 @@ import helpers.interfaces.BaseController;
 import helpers.utils.ResponseUtils;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import lombok.Data;
-import models.access.middlewear.UserAccessMiddleware;
+import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
 import models.enums.UserType;
 import models.repos.UserRepository;

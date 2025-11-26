@@ -1,10 +1,11 @@
-package models.access.middlewear;
+package models.access.middlewear.user;
 
 import helpers.annotations.UserAnnotation;
 import helpers.customErrors.RoutingError;
 import helpers.utils.RequestItem;
 import helpers.utils.RequestZipped;
 import io.vertx.rxjava.ext.web.RoutingContext;
+import models.access.middlewear.BaseMiddleware;
 import models.body.UserLoginRequest;
 import rx.Single;
 

@@ -33,6 +33,11 @@
         </dependency>
         <dependency>
             <groupId>com.ujjain</groupId>
+            <artifactId>hotel</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ujjain</groupId>
             <artifactId>auth</artifactId>
             <version>1.0.0</version>
         </dependency>
