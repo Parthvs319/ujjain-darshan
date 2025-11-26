@@ -16,6 +16,7 @@
     <module>models</module>
     <module>user</module>
     <module>auth</module>
+    <module>hotel</module>
     <module>app</module>
   </modules>
 

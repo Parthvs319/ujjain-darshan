@@ -2,8 +2,10 @@ package models.sql;
 
 import helpers.blueprint.models.BaseModel;
 import io.ebean.Finder;
+import io.ebean.annotation.DbJsonB;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import models.json.HotelDetails;
 
 import javax.persistence.*;
 
@@ -12,17 +14,27 @@ import javax.persistence.*;
 @Data
 @Table(name = "hotels")
 public class Hotel extends BaseModel {
-    public static final Finder<Long, Hotel> find = new Finder<>(Hotel.class);
 
-    // Note: id field is inherited from BaseModel, no need to redefine it
+    @ManyToOne
+    private User user;
 
-    @Column(nullable = false)
-    public String tenantId;
+    private String name;
 
-    @Column(nullable = false)
-    public String name;
+    private Double latitude;
 
-    public String address;
-    public Integer rating;
-    public String city;
+    private Double longitude;
+
+    @ManyToOne
+    private City city;
+
+    public HotelDetails getDetails() {
+        if(this.details == null) {
+            return new HotelDetails();
+        }
+        return details;
+    }
+
+    @DbJsonB
+    private HotelDetails details;
+
 }

@@ -2,6 +2,7 @@ package models.repos;
 
 
 import helpers.sql.SqlFinder;
+import io.ebean.ExpressionList;
 import models.sql.City;
 
 import java.util.List;
@@ -14,6 +15,10 @@ public enum CityRepository {
 
     public List<City> finder() {
         return citySqlFinder.query().where().findList();
+    }
+
+    public ExpressionList<City> exprFinder() {
+        return citySqlFinder.query().where();
     }
 
 }
