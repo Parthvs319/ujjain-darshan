@@ -12,11 +12,9 @@
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath> <!-- important so Maven finds parent -->
     </parent>
-
-    <!-- Module identification -->
     <artifactId>user</artifactId>
     <packaging>jar</packaging>
-    <name>Ujjain Darshan - Helpers Module</name>
+    <name>Ujjain Darshan - User Module</name>
 
     <!-- Dependencies -->
     <dependencies>

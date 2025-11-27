@@ -5,14 +5,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Parent POM -->
     <parent>
         <groupId>com.ujjain</groupId>
         <artifactId>darshan</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>com.ujjain</groupId>
     <artifactId>hotel</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
