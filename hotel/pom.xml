@@ -14,9 +14,8 @@
     <artifactId>hotel</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Ujjain Darshan - Hotel Module</name>
+    <name>Ujjain Darshan - hotel Module</name>
 
-    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
