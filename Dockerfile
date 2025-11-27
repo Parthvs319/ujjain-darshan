@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY pom.xml .
 COPY helpers ./helpers
+COPY hotel ./hotel
 COPY models ./models
 COPY user ./user
 COPY auth ./auth
