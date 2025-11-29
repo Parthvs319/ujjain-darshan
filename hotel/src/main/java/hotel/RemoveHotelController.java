@@ -1,27 +1,20 @@
 package hotel;
 
 
-import helpers.annotations.HotelAnnotation;
 import helpers.annotations.UserAnnotation;
-import helpers.blueprint.enums.RequestItemType;
 import helpers.customErrors.RoutingError;
 import helpers.interfaces.BaseController;
-import helpers.utils.RequestItem;
 import helpers.utils.ResponseUtils;
 import helpers.utils.SuccessResponse;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
 import models.enums.UserType;
-import models.json.HotelDetails;
-import models.repos.CityRepository;
 import models.repos.HotelRepository;
-import models.repos.UserRepository;
 import models.sql.Hotel;
 import models.sql.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @UserAnnotation
 public enum RemoveHotelController implements BaseController {

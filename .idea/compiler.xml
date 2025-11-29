@@ -10,8 +10,9 @@
         <module name="app" />
         <module name="models" />
         <module name="helpers" />
-        <module name="user" />
         <module name="auth" />
+        <module name="hotel" />
+        <module name="user" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

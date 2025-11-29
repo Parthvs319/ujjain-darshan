@@ -4,12 +4,10 @@ import helpers.annotations.UserAnnotation;
 import helpers.customErrors.RoutingError;
 import helpers.interfaces.BaseController;
 import helpers.utils.ResponseUtils;
-import helpers.utils.SuccessResponse;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import lombok.Data;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
-import models.enums.UserType;
 import models.json.HotelDetails;
 import models.repos.HotelRepository;
 import models.sql.Hotel;
@@ -35,9 +33,6 @@ public enum GetAllHotelsController implements BaseController {
 
     private Response map(UserLoginRequest request) {
         try {
-            if (!request.getUser().getUserType().equals(UserType.HOTEL_ADMIN)) {
-                throw new RoutingError("You are not permitted to access this data !");
-            }
             List<Hotel> hotels = HotelRepository.INSTANCE.exprFinder()
                     .findList();
             Response response = new Response();

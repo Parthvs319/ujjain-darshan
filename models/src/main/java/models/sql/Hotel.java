@@ -1,7 +1,6 @@
 package models.sql;
 
 import helpers.blueprint.models.BaseModel;
-import io.ebean.Finder;
 import io.ebean.annotation.DbJsonB;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

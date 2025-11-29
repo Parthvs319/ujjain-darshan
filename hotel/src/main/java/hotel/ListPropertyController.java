@@ -1,7 +1,6 @@
 package hotel;
 
 
-import helpers.annotations.HotelAnnotation;
 import helpers.annotations.UserAnnotation;
 import helpers.blueprint.enums.RequestItemType;
 import helpers.customErrors.RoutingError;
@@ -15,7 +14,6 @@ import models.body.UserLoginRequest;
 import models.enums.UserType;
 import models.json.HotelDetails;
 import models.repos.CityRepository;
-import models.repos.UserRepository;
 import models.sql.Hotel;
 import models.sql.User;
 
