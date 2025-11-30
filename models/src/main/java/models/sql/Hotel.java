@@ -36,4 +36,6 @@ public class Hotel extends BaseModel {
     @DbJsonB
     private HotelDetails details;
 
+    private boolean verifiedByAdmin = false;
+
 }
