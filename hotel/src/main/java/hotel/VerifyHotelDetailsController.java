@@ -10,8 +10,7 @@ import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
 import models.enums.UserType;
 import models.repos.HotelRepository;
-import models.sql.Hotel;
-import models.sql.User;
+import models.sql.Hotel;;
 import java.util.ArrayList;
 
 @UserAnnotation
@@ -37,13 +36,14 @@ public enum VerifyHotelDetailsController implements BaseController {
             if (!request.getUser().getUserType().equals(UserType.ADMIN)) {
                 throw new RoutingError("You are not allowed to verify hotels !");
             }
-            User user = request.getUser();
             Long hotelId = Long.parseLong(request.getRoutingContext().request().getParam("id"));
             Hotel hotel = HotelRepository.INSTANCE.exprFinder()
                     .eq("id" , hotelId)
                     .findOne();
             if(hotel != null) {
-                hotel.setVerifiedByAdmin(true);
+                hotel.setVerified(true);
+                hotel.setVerifiedByUser(request.getUser().getId());
+                hotel.setVerifiedBy(request.getUser().getName());
                 hotel.update();
             } else {
                 throw new RoutingError("Invalid id passed !");

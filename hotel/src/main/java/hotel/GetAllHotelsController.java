@@ -63,6 +63,9 @@ public enum GetAllHotelsController implements BaseController {
         private Double latitude;
         private Double longitude;
         private String city;
+        private boolean verified = false;
+        private Long verifiedByUser = 0L;
+        private String verifiedBy;
         private HotelDetails details;
 
         HotelDTO(models.sql.Hotel hotel) {
@@ -71,6 +74,9 @@ public enum GetAllHotelsController implements BaseController {
             this.details = hotel.getDetails();
             this.latitude = hotel.getLatitude();
             this.longitude = hotel.getLongitude();
+            this.verifiedBy = hotel.getVerifiedBy();
+            this.verifiedByUser = hotel.getVerifiedByUser();
+            this.verified = hotel.isVerified();
         }
     }
 }
