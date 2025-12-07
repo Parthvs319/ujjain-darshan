@@ -12,7 +12,7 @@ import io.vertx.rxjava.ext.web.RoutingContext;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
 import models.enums.UserType;
-import models.json.HotelDetails;
+import models.json.hotel.HotelDetails;
 import models.repos.CityRepository;
 import models.sql.Hotel;
 import models.sql.User;
@@ -56,6 +56,12 @@ public enum ListPropertyController implements BaseController {
             HotelDetails details = request.getRequest().get("details");
             if(details == null) {
                 throw new RoutingError("Details are must !");
+            }
+            if(details.getImages() == null || (details.getImages().isEmpty())) {
+                throw new RoutingError("Images are must !");
+            }
+            if(details.getImages().size() < 5) {
+                throw new RoutingError("Minimum of 5 images are mandatory !");
             }
             Hotel hotel = new Hotel();
             hotel.setUser(user);

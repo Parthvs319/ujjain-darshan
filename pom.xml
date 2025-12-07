@@ -16,6 +16,8 @@
     <module>models</module>
     <module>user</module>
     <module>auth</module>
+    <module>pujari</module>
+    <module>driver</module>
     <module>hotel</module>
     <module>app</module>
   </modules>

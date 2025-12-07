@@ -1,4 +1,4 @@
-package models.json;
+package models.json.hotel;
 
 import lombok.Data;
 import models.enums.RoomType;

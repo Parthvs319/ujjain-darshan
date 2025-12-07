@@ -1,6 +1,7 @@
 package com.ujjain.darshan;
 
 import auth.AuthRouter;
+import driver.DriverRouter;
 import hotel.HotelRouter;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpMethod;
@@ -9,6 +10,7 @@ import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
+import pujari.PujariRouter;
 import user.UserRouter;
 
 public class HttpVerticle extends AbstractVerticle {
@@ -36,6 +38,8 @@ public class HttpVerticle extends AbstractVerticle {
         router.mountSubRouter("/user", UserRouter.INSTANCE.router(rxVertx));
         router.mountSubRouter("/auth", AuthRouter.INSTANCE.router(rxVertx));
         router.mountSubRouter("/hotel", HotelRouter.INSTANCE.router(rxVertx));
+        router.mountSubRouter("/pujari", PujariRouter.INSTANCE.router(rxVertx));
+        router.mountSubRouter("/driver", DriverRouter.INSTANCE.router(rxVertx));
 
         HttpServerOptions options = new HttpServerOptions().setCompressionSupported(true);
 

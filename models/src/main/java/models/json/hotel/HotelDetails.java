@@ -1,9 +1,10 @@
-package models.json;
+package models.json.hotel;
 
 import lombok.Data;
 import models.enums.HotelType;
 import models.enums.UserType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,11 +26,11 @@ public class HotelDetails {
 
     private boolean channelManager;
 
-    private String email;// OTP VERIFICATION
+    private String email;
 
-    private String mobileNumber;// OTP VERIFICATION
+    private String mobileNumber;
 
-    private String whatsAppMobileNumber; // OTP VERIFICATION
+    private String whatsAppMobileNumber;
 
     private String landline;
 
@@ -44,4 +45,15 @@ public class HotelDetails {
     private Amenities amenities;
 
     private List<Room> rooms;
+
+    private List<String> images = new ArrayList<>();
+
+    private String gstin;
+
+    private boolean gstinVerified = false;
+
+    private String checkInTime;
+
+    private String checkOutTime;
+
 }
