@@ -1,4 +1,4 @@
-package hotel;
+package pujari;
 
 import helpers.annotations.UserAnnotation;
 import helpers.customErrors.RoutingError;
@@ -9,16 +9,16 @@ import lombok.Data;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
 import models.enums.Status;
-import models.json.hotel.HotelDetails;
-import models.repos.HotelRepository;
-import models.sql.Hotel;
-
+import models.json.pujari.PujariDetails;
+import models.repos.PujariRepository;
+import models.sql.Pujari;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @UserAnnotation
-public enum GetAllHotelsController implements BaseController {
+public enum GetAllPujarisController implements BaseController {
 
     INSTANCE;
 
@@ -34,7 +34,7 @@ public enum GetAllHotelsController implements BaseController {
 
     private Response map(UserLoginRequest request) {
         try {
-            List<Hotel> hotels = HotelRepository.INSTANCE.exprFinder().eq("status" , Status.APPROVED)
+            List<Pujari> hotels = PujariRepository.INSTANCE.exprFinder().eq("status" , Status.APPROVED)
                     .findList();
             Response response = new Response();
             response.setResponse(hotels);
@@ -48,30 +48,27 @@ public enum GetAllHotelsController implements BaseController {
 
     @Data
     class Response {
-        private List<HotelDTO> hotels = new ArrayList<>();
+        private List<PujariDTO> pujaris = new ArrayList<>();
 
-        private void setResponse(List<models.sql.Hotel> dbHotels) {
-            this.hotels = dbHotels.stream()
-                    .map(HotelDTO::new)
+        private void setResponse(List<models.sql.Pujari> pujaris) {
+            this.pujaris = pujaris.stream()
+                    .map(PujariDTO::new)
                     .collect(Collectors.toList());
         }
     }
 
     @Data
-    class HotelDTO {
-
+    class PujariDTO {
+        private Long id;
         private String name;
-        private Double latitude;
-        private Double longitude;
         private String city;
-        private HotelDetails details;
+        private PujariDetails details;
 
-        HotelDTO(models.sql.Hotel hotel) {
-            this.name = hotel.getName();
-            this.city = hotel.getCity().getName();
-            this.details = hotel.getDetails();
-            this.latitude = hotel.getLatitude();
-            this.longitude = hotel.getLongitude();
+        PujariDTO(models.sql.Pujari pujari) {
+            this.id = pujari.getId();
+            this.name = pujari.getUser().getName();
+            this.city = pujari.getCity().getName();
+            this.details = pujari.getDetails();
         }
     }
 }

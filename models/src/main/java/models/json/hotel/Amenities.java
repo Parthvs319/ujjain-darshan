@@ -1,4 +1,4 @@
-package models.json;
+package models.json.hotel;
 
 public class Amenities {
 

@@ -1,4 +1,4 @@
-package hotel;
+package driver;
 
 import helpers.annotations.UserAnnotation;
 import helpers.customErrors.RoutingError;
@@ -8,17 +8,18 @@ import io.vertx.rxjava.ext.web.RoutingContext;
 import lombok.Data;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
-import models.enums.Status;
 import models.json.hotel.HotelDetails;
 import models.repos.HotelRepository;
+import models.repos.VehiclesRepository;
 import models.sql.Hotel;
+import models.sql.Vehicles;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @UserAnnotation
-public enum GetAllHotelsController implements BaseController {
+public enum GetAllVehiclesController implements BaseController {
 
     INSTANCE;
 
@@ -34,7 +35,7 @@ public enum GetAllHotelsController implements BaseController {
 
     private Response map(UserLoginRequest request) {
         try {
-            List<Hotel> hotels = HotelRepository.INSTANCE.exprFinder().eq("status" , Status.APPROVED)
+            List<Vehicles> hotels = VehiclesRepository.INSTANCE.exprFinder().eq("")
                     .findList();
             Response response = new Response();
             response.setResponse(hotels);
@@ -61,6 +62,7 @@ public enum GetAllHotelsController implements BaseController {
     class HotelDTO {
 
         private String name;
+        private Long id;
         private Double latitude;
         private Double longitude;
         private String city;
@@ -68,6 +70,7 @@ public enum GetAllHotelsController implements BaseController {
 
         HotelDTO(models.sql.Hotel hotel) {
             this.name = hotel.getName();
+            this.id = hotel.getId();
             this.city = hotel.getCity().getName();
             this.details = hotel.getDetails();
             this.latitude = hotel.getLatitude();

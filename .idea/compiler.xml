@@ -10,6 +10,8 @@
         <module name="app" />
         <module name="models" />
         <module name="helpers" />
+        <module name="pujari" />
+        <module name="driver" />
         <module name="auth" />
         <module name="hotel" />
         <module name="user" />

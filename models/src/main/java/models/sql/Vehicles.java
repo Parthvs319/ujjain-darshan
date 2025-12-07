@@ -5,31 +5,30 @@ import io.ebean.annotation.DbJsonB;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import models.enums.Status;
-import models.json.hotel.HotelDetails;
+import models.json.vehicles.DriverOnboardingDetails;
+import models.json.vehicles.VehicleDetails;
 
 import javax.persistence.*;
+import java.sql.Driver;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@Table(name = "hotels")
-public class Hotel extends BaseModel {
+@Table(name = "vehicles")
+public class Vehicles extends BaseModel {
 
-    @ManyToOne
+    @OneToOne
     private User user;
 
-    private String name;
-
-    private Double latitude;
-
-    private Double longitude;
+    @ManyToOne
+    private Driver driver;
 
     @ManyToOne
     private City city;
 
-    public HotelDetails getDetails() {
+    public VehicleDetails getDetails() {
         if(this.details == null) {
-            return new HotelDetails();
+            return new VehicleDetails();
         }
         return details;
     }
@@ -37,6 +36,7 @@ public class Hotel extends BaseModel {
     private Status status = Status.PENDING;
 
     @DbJsonB
-    private HotelDetails details;
+    private VehicleDetails details;
 
 }
+

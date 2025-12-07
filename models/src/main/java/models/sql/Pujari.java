@@ -6,30 +6,25 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import models.enums.Status;
 import models.json.hotel.HotelDetails;
+import models.json.pujari.PujariDetails;
 
 import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@Table(name = "hotels")
-public class Hotel extends BaseModel {
+@Table(name = "pujari")
+public class Pujari extends BaseModel {
 
     @ManyToOne
     private User user;
 
-    private String name;
-
-    private Double latitude;
-
-    private Double longitude;
-
     @ManyToOne
     private City city;
 
-    public HotelDetails getDetails() {
+    public PujariDetails getDetails() {
         if(this.details == null) {
-            return new HotelDetails();
+            return new PujariDetails();
         }
         return details;
     }
@@ -37,6 +32,6 @@ public class Hotel extends BaseModel {
     private Status status = Status.PENDING;
 
     @DbJsonB
-    private HotelDetails details;
+    private PujariDetails details;
 
 }

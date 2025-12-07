@@ -9,7 +9,7 @@ import lombok.Data;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
 import models.enums.UserType;
-import models.json.HotelDetails;
+import models.json.hotel.HotelDetails;
 import models.repos.HotelRepository;
 import models.sql.Hotel;
 import java.util.ArrayList;
