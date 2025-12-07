@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public enum GenerateOtpController implements ParamsController {
+public enum VerifyOtpController  implements ParamsController {
 
     INSTANCE;
 
@@ -36,21 +36,7 @@ public enum GenerateOtpController implements ParamsController {
     }
 
     private Response map(RequestZipped ctx) {
-        Long userId = ctx.getRequest().get("userId");
-        if (userId == null) {
-            throw new RoutingError("userId missing");
-        }
-        User user = UserRepository.INSTANCE.byId(userId);
-        if (user == null) {
-            throw new RoutingError("Invalid user id !");
-        }
-        if(!user.isActive()) {
-            throw new RoutingError("User is deactivated !");
-        }
-        String otp = OtpService.INSTANCE.sendOtp(user.getMobile());
-        user.setCurrentOtp(otp);
-        user.update();
-        return new Response(otp);
+        return new Response(OtpService.INSTANCE.verifyOtp(ctx.getRequest().get("mobile") , ctx.getRequest().get("otp")));
     }
 
     @Override
@@ -58,9 +44,17 @@ public enum GenerateOtpController implements ParamsController {
         List<RequestItem> items = new ArrayList<>();
         items.add(
                 RequestItem.builder()
-                        .key("userId")
+                        .key("mobile")
                         .required(true)
-                        .itemType(RequestItemType.INTEGER)
+                        .itemType(RequestItemType.STRING)
+                        .build()
+        );
+
+        items.add(
+                RequestItem.builder()
+                        .key("otp")
+                        .required(true)
+                        .itemType(RequestItemType.STRING)
                         .build()
         );
         return items;
@@ -68,9 +62,10 @@ public enum GenerateOtpController implements ParamsController {
 
     @Data
     class Response {
-        String otp;
-        Response(String otp) {
-            this.otp = otp;
+        Boolean verified;
+        Response(Boolean verified) {
+            this.verified = verified;
         }
     }
 }
+

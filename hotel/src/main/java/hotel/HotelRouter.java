@@ -16,7 +16,8 @@ public enum HotelRouter implements SubRouterProtocol {
         router.get("/:id/getAllHotelsByUser").handler(GetAllHotelsByUserController.INSTANCE::handle);
         router.post("/listProperty").handler(ListPropertyController.INSTANCE::handle);
         router.delete("/:id/remove").handler(RemoveHotelController.INSTANCE::handle);
-//        router.post("/updateRoomRates").handler(UpdateHotelController.INSTANCE::handle);
+        router.post("/:id/verifyByAdmin").handler(VerifyHotelDetailsController.INSTANCE::handle);
+        //  router.post("/updateRoomRates").handler(UpdateHotelController.INSTANCE::handle);
         router.post("/activate").handler(ActivateHotelController.INSTANCE::handle);
 
 
