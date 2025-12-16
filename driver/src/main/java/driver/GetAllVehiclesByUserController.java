@@ -3,12 +3,12 @@ package driver;
 import helpers.annotations.UserAnnotation;
 import helpers.customErrors.RoutingError;
 import helpers.interfaces.BaseController;
+import helpers.utils.RequestItem;
 import helpers.utils.ResponseUtils;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import lombok.Data;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
-import models.enums.UserType;
 import models.json.vehicles.VehicleDetails;
 import models.repos.VehiclesRepository;
 import models.sql.Vehicles;
@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @UserAnnotation
-public enum GetAllVehiclesController implements BaseController {
+public enum GetAllVehiclesByUserController implements BaseController {
 
     INSTANCE;
 
     @Override
     public void handle(RoutingContext event) {
-        UserAccessMiddleware.INSTANCE.with(event, new ArrayList<>(), this.getClass())
+        UserAccessMiddleware.INSTANCE.with(event, items(), this.getClass())
                 .map(this::map)
                 .subscribe(
                         o -> ResponseUtils.INSTANCE.writeJsonResponse(event, o),
@@ -33,19 +33,28 @@ public enum GetAllVehiclesController implements BaseController {
     }
 
     private Response map(UserLoginRequest request) {
-        try {
-            if (!request.getUser().getUserType().equals(UserType.ADMIN)) {
-                throw new RoutingError("You are not permitted to access this data !");
-            }
-            List<Vehicles> vehicles = VehiclesRepository.INSTANCE.exprFinder().findList();
-            Response response = new Response();
-            response.setResponse(vehicles);
-            return response;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RoutingError(e.getMessage());
+        Long userId = request.getRequest().get("id");
+        if (userId == null) {
+            throw new RoutingError("Invalid user id");
         }
+        // Allow admins or the same user to view their vehicles
+        if (!request.getUser().getId().equals(userId) && request.getUser().getUserType() != models.enums.UserType.ADMIN) {
+            throw new RoutingError("You are not permitted to access this data !");
+        }
+
+        List<Vehicles> vehicles = VehiclesRepository.INSTANCE.exprFinder()
+                .eq("user.id", userId)
+                .findList();
+
+        Response response = new Response();
+        response.setResponse(vehicles);
+        return response;
+    }
+
+    public List<RequestItem> items() {
+        List<RequestItem> items = new ArrayList<>();
+        items.add(RequestItem.builder().key("id").required(true).itemType(helpers.blueprint.enums.RequestItemType.INTEGER).build());
+        return items;
     }
 
     @Data
@@ -80,3 +89,5 @@ public enum GetAllVehiclesController implements BaseController {
         }
     }
 }
+
+

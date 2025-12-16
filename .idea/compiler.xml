@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="app" />
+        <module name="tourist" />
         <module name="models" />
         <module name="helpers" />
         <module name="pujari" />

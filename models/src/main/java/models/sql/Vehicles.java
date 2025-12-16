@@ -21,7 +21,7 @@ public class Vehicles extends BaseModel {
     private User user;
 
     @ManyToOne
-    private Driver driver;
+    private Drivers driver;
 
     @ManyToOne
     private City city;
@@ -37,6 +37,8 @@ public class Vehicles extends BaseModel {
 
     @DbJsonB
     private VehicleDetails details;
+
+    private String number;
 
 }
 
