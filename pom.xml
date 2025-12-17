@@ -20,6 +20,7 @@
     <module>driver</module>
     <module>hotel</module>
     <module>app</module>
+      <module>tourist</module>
   </modules>
 
   <properties>
