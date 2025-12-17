@@ -24,7 +24,7 @@ public enum UpdateDriverStatusController implements BaseController {
 
     @Override
     public void handle(RoutingContext event) {
-        UserAccessMiddleware.INSTANCE.with(event, new ArrayList<>(), this.getClass())
+        UserAccessMiddleware.INSTANCE.with(event, items(), this.getClass())
                 .map(this::map)
                 .subscribe(
                         o -> ResponseUtils.INSTANCE.writeJsonResponse(event, o),

@@ -11,6 +11,7 @@ import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
 import pujari.PujariRouter;
+import tourist.TouristRouter;
 import user.UserRouter;
 
 public class HttpVerticle extends AbstractVerticle {
@@ -40,6 +41,7 @@ public class HttpVerticle extends AbstractVerticle {
         router.mountSubRouter("/hotel", HotelRouter.INSTANCE.router(rxVertx));
         router.mountSubRouter("/pujari", PujariRouter.INSTANCE.router(rxVertx));
         router.mountSubRouter("/driver", DriverRouter.INSTANCE.router(rxVertx));
+        router.mountSubRouter("/tourist", TouristRouter.INSTANCE.router(rxVertx));
 
         HttpServerOptions options = new HttpServerOptions().setCompressionSupported(true);
 
