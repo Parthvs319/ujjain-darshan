@@ -8,6 +8,7 @@ import helpers.utils.SuccessResponse;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
+import models.enums.Status;
 import models.enums.UserType;
 import models.repos.HotelRepository;
 import models.sql.Hotel;;
@@ -42,6 +43,7 @@ public enum VerifyHotelDetailsController implements BaseController {
                     .findOne();
             if(hotel != null) {
                 hotel.setVerified(true);
+                hotel.setStatus(Status.APPROVED);
                 hotel.setVerifiedByUser(request.getUser().getId());
                 hotel.setVerifiedBy(request.getUser().getName());
                 hotel.update();

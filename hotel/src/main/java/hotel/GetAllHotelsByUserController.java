@@ -8,6 +8,7 @@ import io.vertx.rxjava.ext.web.RoutingContext;
 import lombok.Data;
 import models.access.middlewear.user.UserAccessMiddleware;
 import models.body.UserLoginRequest;
+import models.enums.Status;
 import models.enums.UserType;
 import models.json.hotel.HotelDetails;
 import models.repos.HotelRepository;
@@ -73,6 +74,7 @@ public enum GetAllHotelsByUserController implements BaseController {
         private boolean verified = false;
         private Long verifiedByUser = 0L;
         private String verifiedBy;
+        private Status status;
         private HotelDetails details;
 
         HotelDTO(models.sql.Hotel hotel) {
@@ -82,6 +84,7 @@ public enum GetAllHotelsByUserController implements BaseController {
             this.latitude = hotel.getLatitude();
             this.longitude = hotel.getLongitude();
             this.verifiedBy = hotel.getVerifiedBy();
+            this.status = hotel.getStatus();
             this.verifiedByUser = hotel.getVerifiedByUser();
             this.verified = hotel.isVerified();
         }
