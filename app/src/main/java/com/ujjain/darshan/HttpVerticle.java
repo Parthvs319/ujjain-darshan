@@ -42,7 +42,6 @@ public class HttpVerticle extends AbstractVerticle {
         router.mountSubRouter("/driver", DriverRouter.INSTANCE.router(rxVertx));
 
         HttpServerOptions options = new HttpServerOptions().setCompressionSupported(true);
-
         int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
 
         rxVertx.createHttpServer(options)
