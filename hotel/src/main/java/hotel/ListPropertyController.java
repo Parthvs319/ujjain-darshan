@@ -69,7 +69,8 @@ public enum ListPropertyController implements BaseController {
             hotel.setLongitude(request.getRequest().get("lng"));
             hotel.setDetails(details);
             hotel.setName(request.getRequest().get("name"));
-            hotel.setCity(CityRepository.INSTANCE.exprFinder().eq("id" , request.getRequest().get("cityId")).findOne());
+            Long cityId = request.getRequest().get("cityId");
+            hotel.setCity(CityRepository.INSTANCE.exprFinder().eq("id" , cityId).findOne());
             hotel.save();
         } catch (Exception e) {
             e.printStackTrace();
