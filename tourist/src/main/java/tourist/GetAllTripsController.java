@@ -34,7 +34,6 @@ public enum GetAllTripsController implements BaseController {
     private Response map(UserLoginRequest request) {
         List<Trip> trips;
         
-        // Tourists can only see their own trips, Admins can see all trips
         if (request.getUser().getUserType().equals(UserType.TOURIST)) {
             trips = TripsRepository.INSTANCE.findByUserId(request.getUser().getId());
         } else if (request.getUser().getUserType().equals(UserType.ADMIN)) {
