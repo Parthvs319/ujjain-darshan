@@ -2,8 +2,6 @@ package models.repos;
 
 import helpers.sql.SqlFinder;
 import io.ebean.ExpressionList;
-import models.sql.Hotel;
-import models.sql.Puja;
 import models.sql.Pujari;
 import models.sql.User;
 

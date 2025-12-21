@@ -16,6 +16,12 @@ public enum PujariRouter implements SubRouterProtocol {
         router.post("/:id/verifyByAdmin").handler(VerifyPujariDetailsController.INSTANCE::handle);
         router.get("/getAllPujari").handler(GetAllPujarisController.INSTANCE::handle);
         router.get("/details").handler(GetAllPujariDetails.INSTANCE::handle);
+        
+        // Trip request endpoints
+        router.get("/getTripRequests").handler(GetTripRequestsController.INSTANCE::handle);
+        router.post("/acceptTripRequest").handler(AcceptTripRequestController.INSTANCE::handle);
+        router.post("/rejectTripRequest").handler(RejectTripRequestController.INSTANCE::handle);
+        
         return router;
     }
 }

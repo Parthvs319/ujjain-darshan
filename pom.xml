@@ -16,11 +16,11 @@
     <module>models</module>
     <module>user</module>
     <module>auth</module>
+    <module>tourist</module>
     <module>pujari</module>
     <module>driver</module>
     <module>hotel</module>
     <module>app</module>
-      <module>tourist</module>
   </modules>
 
   <properties>

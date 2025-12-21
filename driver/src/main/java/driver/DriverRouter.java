@@ -21,6 +21,11 @@ public enum DriverRouter implements SubRouterProtocol {
         router.get("/:id/getAllVehiclesByUser").handler(GetAllVehiclesByUserController.INSTANCE::handle);
         router.post("/addVehicle").handler(AddVehicleController.INSTANCE::handle);
         router.delete("/:id/remove").handler(RemoveVehicleController.INSTANCE::handle);
+        
+        // Trip request endpoints
+        router.get("/getTripRequests").handler(GetTripRequestsController.INSTANCE::handle);
+        router.post("/acceptTripRequest").handler(AcceptTripRequestController.INSTANCE::handle);
+        router.post("/rejectTripRequest").handler(RejectTripRequestController.INSTANCE::handle);
 
         return router;
     }

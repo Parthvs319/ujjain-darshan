@@ -28,6 +28,11 @@
         </dependency>
         <dependency>
             <groupId>com.ujjain</groupId>
+            <artifactId>tourist</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ujjain</groupId>
             <artifactId>driver</artifactId>
             <version>1.0.0</version>
         </dependency>
