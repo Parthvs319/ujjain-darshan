@@ -1,22 +1,18 @@
 package auth;
 
 import helpers.blueprint.enums.RequestItemType;
-import helpers.customErrors.RoutingError;
 import helpers.interfaces.ParamsController;
-import helpers.services.OtpService;
+import models.services.OtpService;
 import helpers.utils.RequestItem;
 import helpers.utils.RequestZipped;
 import helpers.utils.ResponseUtils;
 import io.vertx.rxjava.core.RxHelper;
 import io.vertx.rxjava.ext.web.RoutingContext;
 import lombok.Data;
-import models.repos.UserRepository;
-import models.sql.User;
 import rx.Single;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 public enum VerifyOtpController  implements ParamsController {

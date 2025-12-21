@@ -141,6 +141,9 @@ public enum AcceptTripRequestController implements BaseController {
             otherRequest.update();
         }
 
+        // Send WhatsApp notifications to driver and tourist after acceptance
+//        WhatsAppService.sendDriverAcceptanceNotifications(tripRequest);
+
         return new SuccessResponse(true, "Trip request accepted successfully! You have been assigned to trip: " + tripRequest.getTrip().getTripId());
     }
 

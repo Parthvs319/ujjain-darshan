@@ -115,6 +115,9 @@ public enum AcceptTripRequestController implements BaseController {
             otherRequest.update();
         }
 
+        // Send WhatsApp notifications to pujari and tourist after acceptance
+//        WhatsAppService.sendPujariAcceptanceNotifications(tripRequest);
+
         String pujasList = tripRequest.getPujaNames() != null && !tripRequest.getPujaNames().isEmpty()
                 ? String.join(", ", tripRequest.getPujaNames())
                 : "all requested pujas";

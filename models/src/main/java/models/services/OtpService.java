@@ -1,4 +1,4 @@
-package helpers.services;
+package models.services;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

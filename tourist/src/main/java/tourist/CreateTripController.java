@@ -216,6 +216,8 @@ public enum CreateTripController implements BaseController {
             }
         }
 
+ //       WhatsAppService.sendTripCreationConfirmation(trip);
+
         return new SuccessResponse(true, "Trip created successfully! Trip ID: " + trip.getTripId());
     }
 
