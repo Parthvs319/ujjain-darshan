@@ -1,5 +1,8 @@
 package models.json.hotel;
 
+import lombok.Data;
+
+@Data
 public class Amenities {
 
     private boolean ac;
